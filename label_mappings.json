@@ -1,0 +1,13 @@
+{
+  "binary_label_map": {
+    "gaslighting": 1,
+    "non_gaslighting": 0
+  },
+  "tactic_label_map": {
+    "coercion_intimidation": 1,
+    "distortion_denial": 2,
+    "knowledge_invalidation": 3,
+    "trivialization_minimization": 4,
+    "na": 0
+  }
+}

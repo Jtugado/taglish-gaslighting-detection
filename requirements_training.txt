@@ -1,0 +1,20 @@
+# Model Training Requirements
+# Install with: pip install -r requirements_training.txt
+
+# Core ML libraries
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.14.0
+evaluate>=0.4.0
+accelerate>=0.20.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.23.0
+scikit-learn>=1.2.0
+
+# Hugging Face Hub
+huggingface-hub>=0.16.0
+
+# Optional but recommended
+tqdm>=4.65.0

@@ -1,0 +1,25 @@
+# Reddit Gaslighting Dataset Collection Pipeline
+# Python 3.8+
+
+# Core dependencies - install these first
+setuptools>=65.0.0
+wheel>=0.38.0
+
+# Reddit API
+praw>=7.7.0
+
+# Data Processing
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Natural Language Processing
+nltk>=3.8
+
+# Machine Learning (for data splitting)
+scikit-learn>=1.2.0
+
+# Environment Variables
+python-dotenv>=0.21.0
+
+# Optional: Progress bars
+tqdm>=4.64.0
