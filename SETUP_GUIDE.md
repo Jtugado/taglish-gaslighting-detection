@@ -84,7 +84,7 @@ pip list
 ### Option A: Google Drive (Recommended)
 
 1. **Download the models:**
-   - Go to: [Google Drive Link]
+   - Go to: https://drive.google.com/drive/folders/1TEbQ7TyzqI7wmLDuighQ4CRUO0S-zw6C?usp=sharing
    - Download `model_outputs.zip` (31GB)
 
 2. **Extract to project:**
