@@ -17,21 +17,23 @@ This system detects:
   - Knowledge Invalidation
 
 ### Models Trained:
-- **BERT** (bert-base-multilingual-uncased)
-- **RoBERTa-Tagalog** (jcblaise/roberta-tagalog-base)
-- **XLM-RoBERTa** (xlm-roberta-base)
+- **RoBERTa-Tagalog** (`jcblaise/roberta-tagalog-base`) - *Best Performer*
+- **mBERT** (`bert-base-multilingual-uncased`) - *Best OOD Generalization*
+- **XLM-RoBERTa** (`xlm-roberta-base`)
 
 ---
 
 ## 📊 Performance Highlights
 
-| Model | Binary F1 | Tactic F1 |
-|-------|-----------|-----------|
-| RoBERTa-Tagalog | **0.94** | **0.88** |
-| BERT | 0.92 | 0.86 |
-| XLM-RoBERTa | 0.91 | 0.84 |
+The system was evaluated on both **In-Domain (ID)** political texts and **Out-of-Domain (OOD)** cultural/revisionist texts.
 
-*Complete metrics available in `evaluation_results/`*
+| Model | Binary F1 (ID) | Binary F1 (OOD) | ROC-AUC | Tactic F1 (ID) | Tactic F1 (OOD) |
+|-------|:--------------:|:---------------:|:-------:|:--------------:|:---------------:|
+| **RoBERTa-Tagalog** | **0.93** | 0.89 | **0.98** | **0.91** | **0.59** |
+| mBERT | 0.91 | **0.91** | 0.97 | 0.83 | 0.50 |
+| XLM-RoBERTa | 0.89 | 0.87 | 0.95 | 0.76 | 0.48 |
+
+*Metrics: F1-Score is the harmonic mean of precision and recall. ROC-AUC measures binary classification capability across thresholds. Tactic scores are Macro-Averaged.*
 
 ---
 
@@ -50,7 +52,7 @@ python -m venv venv
 
 # Activate virtual environment
 # Windows:
-venv\Scripts\activate
+.\venv\Scripts\activate
 # Linux/Mac:
 source venv/bin/activate
 
@@ -64,20 +66,12 @@ pip install -r requirements.txt
 
 **Option A: Google Drive** (Recommended)
 ```
-Download from: YOUR_GOOGLE_DRIVE_LINK_HERE
+Download from: https://drive.google.com/drive/folders/1TEbQ7TyzqI7wmLDuighQ4CRUO0S-zw6C?usp=sharing
 
 Extract to: model_outputs/
 ```
 
-**Option B: HuggingFace Hub** (Coming Soon)
-```bash
-# Will be available at:
-# huggingface.co/Tokyosaurus/taglish-gaslighting-detection-roberta-binary
-# huggingface.co/Tokyosaurus/taglish-gaslighting-detection-roberta-tactic
-# ... (6 models total)
-```
-
-**Option C: Train From Scratch**
+**Option B: Train From Scratch**
 ```bash
 python taglish_gaslighting_training_final.py
 ```
@@ -194,7 +188,7 @@ python taglish_gaslighting_training_final.py
 ### Out-of-Domain (Zero-Shot Evaluation)
 - **Domains**: Cultural, Revisionist contexts
 - **Size**: 552 samples
-- **Purpose**: Test generalization
+- **Purpose**: Test generalization robustness
 
 ### Data Splits:
 ```
@@ -251,19 +245,22 @@ seaborn>=0.12.0
 
 ---
 
-## 📈 Results
+## 📈 Detailed Results
 
-### Binary Classification
+### Binary Classification (Detection)
+*Determining if text contains gaslighting or not.*
 - **Best Model**: RoBERTa-Tagalog
-- **In-Domain F1**: 0.94
+- **In-Domain F1**: 0.93
 - **OOD F1**: 0.89
-- **Accuracy**: 0.94
+- **ROC-AUC**: 0.98
+- **Key Finding**: mBERT showed superior generalization to out-of-domain data (-0.005 ΔF1), indicating it is more robust to topic shifts than RoBERTa.
 
-### Tactic Classification
+### Tactic Classification (Identification)
+*Identifying specific tactics: Distortion, Trivialization, Coercion, Knowledge Invalidation.*
 - **Best Model**: RoBERTa-Tagalog
-- **In-Domain F1**: 0.88
-- **OOD F1**: 0.81
-- **Accuracy**: 0.88
+- **In-Domain Macro-F1**: 0.91
+- **OOD Macro-F1**: 0.59
+- **Key Finding**: All models struggled with OOD tactic classification (significant performance drop), highlighting the difficulty of mapping specific linguistic manipulation patterns across different cultural contexts.
 
 *Detailed results in `evaluation_results/comprehensive_training_summary.csv`*
 
@@ -274,7 +271,7 @@ seaborn>=0.12.0
 This is an academic research project. For questions or collaboration:
 - Open an issue
 - Submit a pull request
-- Email: [your.email@example.com]
+- Email: jtugado@gbox.adnu.edu.p
 
 ---
 
@@ -294,19 +291,10 @@ This is an academic research project. For questions or collaboration:
 
 ## 📞 Contact
 
-**Author**: [Your Name]
-**Institution**: [Your University]
+**Author**: Jude Philippe M. Tugado, Jasper Gomez
+**Institution**: Ateneo De Naga University
 **Year**: 2026
 
 ---
 
-## ⚠️ Important Notes
-
-1. **Models are large** (31GB) - download separately from Google Drive
-2. **GPU recommended** for inference and training
-3. **Virtual environment** recommended to avoid dependency conflicts
-4. **Dataset privacy**: Anonymized Reddit data, no personal information
-
----
-
-**Last Updated**: February 2026
+**Last Updated**: February 2026.
